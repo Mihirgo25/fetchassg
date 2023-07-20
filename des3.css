@@ -1,0 +1,38 @@
+body {
+    background-color: aquamarine;
+    padding: 70px;
+}
+
+#functions{
+    margin-left: 250px;
+    background-color: blanchedalmond;
+    width: 600px;
+    height: 200px;
+    padding-top: 50px;
+}
+
+#functions div{
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+#taskList{
+    margin-left: 100px;
+}
+
+li {
+    font-family: 'Cambria';
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 2px solid rgb(21, 19, 19);
+    box-shadow: 3px;
+    text-align: left;
+    text-indent: 50px;
+    width: 850px;
+}
+
+li:hover {
+    background-color: darkorchid;
+    color: white;
+}
