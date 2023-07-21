@@ -5,15 +5,15 @@
   <link rel='stylesheet' type='text/css' href='des3.css'>
 </head>
 <body>
-  <h1 style = "text-align: center;">Task Manager</h1>
+  <h1 style = "text-align: center;">To Do List</h1>
 
   <div id ="functions">
     <div>
       <input type="text" id="taskInput" placeholder="Enter task">
+      <input type="text" id="tagInput" placeholder="Enter tag">
       <button id = "addtask" onclick="addTask()">Add Task</button>
       <button id = "displaytask" onclick="displayAllTasks()">Display All Tasks</button>
-      <button id = "loadall" onclick="loadAll()">Load All</button>
-     </div>
+    </div>
     <div>
       <input type="text" id = "idel" placeholder="Add id of the task to delete">
       <button id = "delsel">Delete Selected Item</button>
@@ -25,6 +25,10 @@
       <button id = "editsel">Edit Selected Item</button>
       <button id = "reset">Reset</button>
     </div>
+    <div>
+      <input type="text" id = "idmark" placeholder="Add id of the task to mark">
+      <button id = "mark">Mark as Done/Undone</button>
+    </div>
   </div>
 
   <ul id="taskList"></ul>
@@ -35,54 +39,20 @@
     var ctr = 0;
     var res = "";
     var resid = 0;
-    fetch('https://jsonplaceholder.typicode.com/todos')
-    .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not OK');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        data.forEach((item)=>{
-          tasks.push({task:`${item.title}`});
-          ctr++;
-        })
-        console.log(data);
-      })
-      .catch(error => {
-        console.log('Error:', error.message);
-      });
-    function loadAll(){
-    fetch('https://jsonplaceholder.typicode.com/todos')
-    .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not OK');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        data.forEach((item)=>{
-          tasks.push({task:`${item.title}`});
-          ctr++;
-        })
-        console.log(data);
-      })
-      .catch(error => {
-        console.log('Error:', error.message);
-      });
-    }
-
     function addTask() {
       const taskInput = document.getElementById("taskInput");
       const task = taskInput.value.trim();
+      const tagInput = document.getElementById("tagInput");
+      const tag = tagInput.value.trim()
       if (task !== "") {
         ctr++;
-        tasks.push({task: task});
+        tasks.push({task: task, done: 0, tag: tag});
         const taskList = document.getElementById("taskList");
         const listItem = document.createElement("li");
         listItem.innerHTML = `task: ${task}`;
         taskList.appendChild(listItem);
         taskInput.value = "";
+        tagInput.value = "";
       }
     }
 
@@ -106,6 +76,18 @@
         tasks = [];
         ctr = 0;
     }
+
+    document.querySelector("#mark").addEventListener("click", function(){
+      const tasktomark = document.querySelector("#idmark");
+      const t2m = tasktomark.value.trim();
+      const marked = document.querySelector("#edit");
+      const mr = marked.value.trim();
+      const tm = parseInt(t2m,10);
+      tasktomark.value = "";
+      marked.value = "";
+      tasks[tm].done ^= 1;
+      displayAllTasks();
+    });
 
     document.querySelector("#editsel").addEventListener("click", function(){
       const tasktoedit = document.querySelector("#idedit");
@@ -135,9 +117,17 @@
       taskList.innerHTML = "";
 
       tasks.forEach(task => {
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `task: ${task.task}`;
-        taskList.appendChild(listItem);
+        if(task.done == 0){
+          const listItem = document.createElement("li");
+          listItem.innerHTML = `task: ${task.task}`;
+          taskList.appendChild(listItem);
+        }
+        else{
+          const listItem = document.createElement("li");
+          listItem.innerHTML = `task: ${task.task}`;
+          listItem.style.textDecoration = "line-through";
+          taskList.appendChild(listItem);
+        }
       });
     }
   </script>
