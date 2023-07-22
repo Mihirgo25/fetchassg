@@ -188,3 +188,40 @@ function displayAllTasks() {
         }
     });
 }
+
+function save(){
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function fetch(){
+    const sto = localStorage.getItem("tasks");
+    if (sto) {
+        tasks.push.apply(tasks, JSON.parse(sto));
+        displayAllTasks();
+    }
+}
+
+function displaypending(){
+    var duedate = new Date();
+    const dt = duedate.value.trim();
+    var pendingtasks = [];
+    tasks.forEach(task => {
+        if(task.done == 0){
+            pendingtasks.push[task];
+        }
+        else{
+            if(task.date > dt){
+                pendingtasks.push[task];
+            }
+        }
+    });
+    const taskList = document.getElementById("taskList");
+    taskList.innerHTML = "";
+    pendingtasks.forEach(task => {
+        const listItem = document.createElement("li");
+        listItem.style.color = "red";
+        listItem.innerHTML = `Task: ${task.task}, <span></span> Duedate: ${task.date}`;
+        taskList.appendChild(listItem);
+    });
+
+}

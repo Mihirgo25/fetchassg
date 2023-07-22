@@ -24,19 +24,20 @@ body {
 }
 
 #taskList{
-    margin-left: 100px;
+    margin-left: 50px;
 }
 
 li {
     font-family: 'Cambria';
+    text-align: center;
     background-color: white;
     margin-top: 10px;
     border-radius: 5px;
     border: 2px solid rgb(21, 19, 19);
     box-shadow: 3px;
     text-align: left;
-    text-indent: 50px;
-    width: 830px;
+    text-indent: 10px;
+    width: 1000px;
 }
 
 li:hover {

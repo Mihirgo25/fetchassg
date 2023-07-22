@@ -47,8 +47,15 @@
     </div>
     <div>
       <p>Search By Task:</p>
-      <input type="text" id = "search" placeholder = "Add task to Search"><br><br>
-      <button id = "srch" onclick="searchtask()">Search</button>
+      <input type="text" id = "search" placeholder = "Add task to Search">
+      <button id = "srch" onclick="searchtask()">Search</button><br><br>
+      <p>See Pending Tasks</p>
+      <button id = "pending" onclick="displaypending()">Search</button><br><br>
+      <p>Fetch Tasks From Storage</p>
+      <button id = "fetch" onclick="fetch()">Fetch</button><br><br>
+      <p>Save Tasks To Local Storage</p>
+      <button id = "save" onclick="save()">Save</button>
+
     </div>
     <div>
       <p>Sort By Priority:</p>
