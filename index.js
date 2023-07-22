@@ -1,6 +1,8 @@
 let tasks = [];
-var subtasks = [];
-var log = [];
+let pendingtasks = [];
+let missedtasks = [];
+let subtasks = [];
+let log = [];
 var ctr = 0;
 var res = "";
 var resid = 0;
@@ -10,17 +12,16 @@ document.querySelector("#addtask").addEventListener("click", function(){
     const tagInput = document.getElementById("tagInput");
     const tag = tagInput.value.trim()
     const dateInput = document.getElementById("duedate");
-    const d = dateInput.value.trim();
     const prioInput = document.getElementById("priority");
     const prio = prioInput.value.trim();
     const categoryInput = document.getElementById("categoryInput");
     const cate = categoryInput.value.trim();
     if (task !== "") {
-        tasks.push({task: task, done: 0, tag: tag, date: d, priority: prio, category: cate});
+        tasks.push({task: task, done: 0, tag: tag, date: dateInput.value, priority: prio, category: cate});
         const taskList = document.getElementById("taskList");
         const listItem = document.createElement("li");
         listItem.draggable = true;
-        listItem.innerHTML = `Task: ${task}, Duedate: ${d}`;
+        listItem.innerHTML = `Task: ${task}, Duedate: ${dateInput}`;
         taskList.appendChild(listItem);
         log.push({tk: tasks[ctr], action: "added"});
         taskInput.value = "";
@@ -225,12 +226,11 @@ function fetch(){
 }
 
 function displaypending(){
-    var duedate = new Date();
-    const dt = duedate.value.trim();
-    var pendingtasks = [];
+    var todate = new Date();
+    const dt = todate.value;
     tasks.forEach(task => {
-        if(task.done == 0){
-            pendingtasks.push[task];
+        if(task.date < dt){
+            missedtasks.push[task];
         }
         else{
             if(task.date > dt){
@@ -240,11 +240,24 @@ function displaypending(){
     });
     const taskList = document.getElementById("taskList");
     taskList.innerHTML = "";
-    pendingtasks.forEach(task => {
-        const listItem = document.createElement("li");
-        listItem.style.color = "red";
-        listItem.innerHTML = `Task: ${task.task}, <span></span> Duedate: ${task.date}`;
-        taskList.appendChild(listItem);
+    tasks.forEach(task => {
+        if(pendingtasks.includes(task)){
+            const listItem = document.createElement("li");
+            listItem.style.color = "red";
+            listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
+            taskList.appendChild(listItem);
+        }
+        if(missedtasks.includes(task)){
+            const listItem = document.createElement("li");
+            listItem.style.color = "red";
+            listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}, Status: Missed`;
+            taskList.appendChild(listItem);
+        }
+        else{
+            const listItem = document.createElement("li");
+            listItem.innerHTML = `Task: ${task.task}, <span></span> Duedate: ${task.date}`;
+            taskList.appendChild(listItem);
+        }
     });
 
 }
