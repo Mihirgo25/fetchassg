@@ -26,9 +26,7 @@
       <p>Enter Task To Delete:</p>
       <input type="text" id = "idel" placeholder="Add id of the task to delete"><br><br>
       <button id = "delsel">Delete Selected Item</button><br>
-      <button id = "deletealltasks" onclick="deleteAll()">Delete All</button>
-    </div>
-    <div>
+      <button id = "deletealltasks" onclick="deleteAll()">Delete All</button><br><br><br><br>
       <p>Enter Id of Task to Edit:</p>
       <input type="text" id = "idedit" placeholder="Add id of the task to edit">
       <p>Enter Content:</p>
@@ -37,14 +35,24 @@
       <button id = "reset">Reset</button>
     </div>
     <div>
+      <p>Filter By Priority:</p>
+      <input type="text" id = "filterprio" placeholder = "Add Level in Integer"><br><br>
+      <button id = "fprio" onclick="filterprio()">Filter By Priority</button><br><br>
+      <p>Filter By Category:</p>
+      <input type="text" id = "filtercate" placeholder = "Add Category"><br><br>
+      <button id = "fcate" onclick="filtercate()">Filter By Category</button><br><br><br><br>
       <p>Mark as Done/Undone:</p>
       <input type="text" id = "idmark" placeholder="Add id of the task to mark"><br><br>
       <button id = "mark">Mark as Done/Undone</button>
     </div>
     <div>
-      <p>Filter By Priority:</p>
-      <input type="text" id = "filterprio" placeholder = "Add priority"><br><br>
-      <button id = "fprio" onclick="filterprio()">Filter and Search!</button>
+      <p>Search By Task:</p>
+      <input type="text" id = "search" placeholder = "Add task to Search"><br><br>
+      <button id = "srch" onclick="searchtask()">Search</button>
+    </div>
+    <div>
+      <p>Sort By Priority:</p>
+      <button id = "srtprio" onclick="sortprio()">Sort By Priority</button>
     </div>
   </div>
 

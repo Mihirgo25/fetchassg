@@ -111,7 +111,6 @@ function filterprio(){
             }
             else{
                 const listItem = document.createElement("li");
-                listItem.setAttribute('id', id);
                 listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
                 listItem.style.textDecoration = "line-through";
                 taskList.appendChild(listItem);
@@ -119,6 +118,57 @@ function filterprio(){
         }
     });
     priotoget.value = "";
+}
+
+function filtercate(){
+    const catetoget = document.querySelector("#filtercate");
+    const c2g = catetoget.value.trim();
+    const taskList = document.getElementById("taskList");
+    taskList.innerHTML = "";
+    tasks.forEach(task => {
+        if(task.category == c2g){
+            if(task.done == 0){
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
+                taskList.appendChild(listItem);
+            }
+            else{
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
+                listItem.style.textDecoration = "line-through";
+                taskList.appendChild(listItem);
+            }
+        }
+    });
+    catetoget.value = "";
+}
+
+function searchtask(){
+    const tasktoget = document.querySelector("#search");
+    const t2g = catetoget.value.trim();
+    const taskList = document.getElementById("taskList");
+    taskList.innerHTML = "";
+    tasks.forEach(task => {
+        if(task.task == t2g){
+            if(task.done == 0){
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
+                taskList.appendChild(listItem);
+            }
+            else{
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
+                listItem.style.textDecoration = "line-through";
+                taskList.appendChild(listItem);
+            }
+        }
+    });
+    tasktoget.value = "";
+}
+
+function sortbyprio(){
+    tasks.sort((a,b) => a.priority - b.priority);
+    displayAllTasks();
 }
 
 function displayAllTasks() {
@@ -132,7 +182,6 @@ function displayAllTasks() {
         }
         else{
             const listItem = document.createElement("li");
-            listItem.setAttribute('id', id);
             listItem.innerHTML = `Task: ${task.task}, <span></span> Duedate: ${task.date}`;
             listItem.style.textDecoration = "line-through";
             taskList.appendChild(listItem);
