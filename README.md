@@ -12,4 +12,5 @@
 
    d. Tried to maintain Pending List but it somehow gives error.
 
-Database schema link: https://shorturl.at/gkzI6
+Database schema link: <https://shorturl.at/gkzI6>
+Overall Progress Link: <https://docs.google.com/document/d/1lctKV6bHvWPTf7CyXDwdbuVFpqnfIv0d4i5b6S1D5_A/edit?usp=sharing>
