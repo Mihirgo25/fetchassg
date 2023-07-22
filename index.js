@@ -22,7 +22,7 @@ document.querySelector("#addtask").addEventListener("click", function(){
         listItem.draggable = true;
         listItem.innerHTML = `Task: ${task}, Duedate: ${d}`;
         taskList.appendChild(listItem);
-        log.push({tk: tasks[ctr-1], action: "added"});
+        log.push({tk: tasks[ctr], action: "added"});
         taskInput.value = "";
         tagInput.value = "";
         dateInput.value = "";
@@ -78,10 +78,10 @@ document.querySelector("#editsel").addEventListener("click", function(){
     const edited = document.querySelector("#edit");
     const ed = edited.value.trim();
     const te = parseInt(t2e,10);
-    log.push({tk: tasks[te], action: "edited"});
     res = tasks[te].task;
     tasks[te].task = ed;
     resid = te;
+    log.push({tk: tasks[te], action: "edited"});
     tasktoedit.value = "";
     edited.value = "";
     const taskList = document.getElementById("taskList");
@@ -166,7 +166,7 @@ function searchtask(){
     tasktoget.value = "";
 }
 
-function sortbyprio(){
+function sortprio(){
     tasks.sort((a,b) => a.priority - b.priority);
     displayAllTasks();
 }
