@@ -1,19 +1,26 @@
 body {
     background-color: aquamarine;
-    padding: 70px;
+    padding-top: 20px;
 }
 
 #functions{
-    margin-left: 250px;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: row;
     background-color: blanchedalmond;
-    width: 600px;
-    height: 250px;
-    padding-top: 30px;
+    width: 1150px;
+    height: auto;
+    padding: 20px;
+}
+
+#functions div p{
+    width: 150px;
+    font-size: 15px;
 }
 
 #functions div{
-    margin-left: 50px;
-    margin-bottom: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 #taskList{

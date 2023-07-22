@@ -9,159 +9,47 @@
 
   <div id ="functions">
     <div>
+      <p>Enter Task:</p>
       <input type="text" id="taskInput" placeholder="Enter task">
+      <p>Enter Tag:</p>
       <input type="text" id="tagInput" placeholder="Enter tag">
+      <p>Enter Category:</p>
       <input type="text" id="categoryInput" placeholder="Enter Category">
-      <br>
-      <br>
+      <p>Select Due Date:</p>
       <input type="date" id="duedate" placeholder="Enter Due Date">
-      <input type="text" id="priority" placeholder="Enter The priority">
-      <button id = "addtask">Add Task</button>
+      <p>Assign Priority:</p>
+      <input type="text" id="priority" placeholder="Enter The priority"><br><br>
+      <button id = "addtask">Add Task</button><br>
       <button id = "displaytask" onclick="displayAllTasks()">Display All Tasks</button>
     </div>
     <div>
-      <input type="text" id = "idel" placeholder="Add id of the task to delete">
-      <button id = "delsel">Delete Selected Item</button>
+      <p>Enter Task To Delete:</p>
+      <input type="text" id = "idel" placeholder="Add id of the task to delete"><br><br>
+      <button id = "delsel">Delete Selected Item</button><br>
       <button id = "deletealltasks" onclick="deleteAll()">Delete All</button>
     </div>
     <div>
+      <p>Enter Id of Task to Edit:</p>
       <input type="text" id = "idedit" placeholder="Add id of the task to edit">
-      <input type="text" id = "edit" placeholder="Enter the edited content">
-      <button id = "editsel">Edit Selected Item</button>
+      <p>Enter Content:</p>
+      <input type="text" id = "edit" placeholder="Enter the edited content"><br><br>
+      <button id = "editsel">Edit Selected Item</button><br>
       <button id = "reset">Reset</button>
     </div>
     <div>
-      <input type="text" id = "idmark" placeholder="Add id of the task to mark">
+      <p>Mark as Done/Undone:</p>
+      <input type="text" id = "idmark" placeholder="Add id of the task to mark"><br><br>
       <button id = "mark">Mark as Done/Undone</button>
+    </div>
+    <div>
+      <p>Filter By Priority:</p>
+      <input type="text" id = "filterprio" placeholder = "Add priority"><br><br>
+      <button id = "fprio" onclick="filterprio()">Filter and Search!</button>
     </div>
   </div>
 
   <ul id="taskList"></ul>
 
-  <script>
-
-    let tasks = [];
-    var subtasks = [];
-    var log = [];
-    var ctr = 0;
-    var res = "";
-    var resid = 0;
-    document.querySelector("#addtask").addEventListener("click", function(){
-      const taskInput = document.getElementById("taskInput");
-      const task = taskInput.value.trim();
-      const tagInput = document.getElementById("tagInput");
-      const tag = tagInput.value.trim()
-      const dateInput = document.getElementById("duedate");
-      const d = dateInput.value.trim();
-      const prioInput = document.getElementById("priority");
-      const prio = prioInput.value.trim();
-      const categoryInput = document.getElementById("categoryInput");
-      const cate = categoryInput.value.trim();
-      if (task !== "") {
-        ctr++;
-        tasks.push({task: task, done: 0, tag: tag, date: d, priority: prio, category: cate});
-        const taskList = document.getElementById("taskList");
-        const listItem = document.createElement("li");
-        listItem.setAttribute('id',ctr);
-        listItem.innerHTML = `Task: ${task}, Duedate: ${d}`;
-        taskList.appendChild(listItem);
-        log.push({tk: tasks[ctr-1], action: "added"});
-        taskInput.value = "";
-        tagInput.value = "";
-        dateInput.value = "";
-        prioInput.value = "";
-      }
-    });
-
-    document.querySelector("#delsel").addEventListener("click", function(){
-      const tasktodelete = document.querySelector("#idel");
-      const t2d = tasktodelete.value.trim();
-      const td = parseInt(t2d, 10);
-      if(td < ctr){
-        log.push({tk: tasks[td], action: "deleted"});
-        tasks.splice(td, 1);
-        ctr -= 1;
-        tasktodelete.value = "";
-        const taskList = document.getElementById("taskList");
-        taskList.innerHTML = "";
-        displayAllTasks();
-      }
-    });
-
-    function deleteAll() {
-        const taskList = document.getElementById("taskList");
-        taskList.innerHTML = "";
-        tasks = [];
-        ctr = 0;
-    }
-
-    document.querySelector("#mark").addEventListener("click", function(){
-      const tasktomark = document.querySelector("#idmark");
-      const t2m = tasktomark.value.trim();
-      const marked = document.querySelector("#edit");
-      const mr = marked.value.trim();
-      const tm = parseInt(t2m,10);
-      tasktomark.value = "";
-      marked.value = "";
-      tasks[tm].done ^= 1;
-      if(tasks[tm].done == 1){
-        log.push({tk: tasks[tm], action: "marked done"});
-      }
-      else{
-        log.push({tk: tasks[tm], action: "marked undone"});
-      }
-      displayAllTasks();
-    });
-
-    document.querySelector("#editsel").addEventListener("click", function(){
-      const tasktoedit = document.querySelector("#idedit");
-      const t2e = tasktoedit.value.trim();
-      const edited = document.querySelector("#edit");
-      const ed = edited.value.trim();
-      const te = parseInt(t2e,10);
-      log.push({tk: tasks[te], action: "edited"});
-      res = tasks[te].task;
-      tasks[te].task = ed;
-      resid = te;
-      tasktoedit.value = "";
-      edited.value = "";
-      const taskList = document.getElementById("taskList");
-      taskList.innerHTML = "";
-      displayAllTasks();
-    });
-
-    document.querySelector("#reset").addEventListener("click",function(){
-      tasks[resid].task = res;
-      const taskList = document.getElementById("taskList");
-      log.push({tk: tasks[resid], action:"reset"});
-      taskList.innerHTML = "";
-      displayAllTasks();
-    });
-
-    function displayAllTasks() {
-      const taskList = document.getElementById("taskList");
-      taskList.innerHTML = "";
-      var id = 0;
-      tasks.forEach(task => {
-        if(task.done == 0){
-          const listItem = document.createElement("li");
-          listItem.setAttribute('id', id);
-          listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
-          taskList.appendChild(listItem);
-          id++;
-        }
-        else{
-          const listItem = document.createElement("li");
-          listItem.setAttribute('id', id);
-          listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
-          listItem.style.textDecoration = "line-through";
-          taskList.appendChild(listItem);
-          id++;
-        }
-      });
-    }
-
-    
-  </script>
+  <script src="index.js"></script>
 </body>
 </html>
