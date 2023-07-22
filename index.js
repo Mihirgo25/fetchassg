@@ -195,6 +195,11 @@ function sortprio(){
     displayAllTasks();
 }
 
+function sortdate(){
+    tasks.sort((a,b) => a.date - b.date);
+    displayAllTasks();
+}
+
 function displayAllTasks() {
     const taskList = document.getElementById("taskList");
     taskList.innerHTML = "";

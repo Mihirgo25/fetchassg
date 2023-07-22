@@ -9,3 +9,7 @@
    b. Due Date Auto complete: As mentioned by Prabjyyot sir, I tried to use Keyboard events to create autocomplete but I was facing some difficulties.
 
    c. Remainder: I found it difficult to create remainders for the certain tasks whose duedate was closer.
+
+   d. Tried to maintain Pending List but it somehow gives error.
+
+Database schema link: https://shorturl.at/gkzI6
