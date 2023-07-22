@@ -145,11 +145,11 @@ function filtercate(){
 
 function searchtask(){
     const tasktoget = document.querySelector("#search");
-    const t2g = catetoget.value.trim();
+    const t2g = tasktoget.value.trim();
     const taskList = document.getElementById("taskList");
     taskList.innerHTML = "";
     tasks.forEach(task => {
-        if(task.task == t2g){
+        if(task.task == t2g || task.task.includes(t2g)){
             if(task.done == 0){
                 const listItem = document.createElement("li");
                 listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
@@ -164,6 +164,29 @@ function searchtask(){
         }
     });
     tasktoget.value = "";
+}
+
+function searchtag(){
+    const tsktoget = document.querySelector("#searchtag");
+    const tt2g = tsktoget.value.trim();
+    const taskList = document.getElementById("taskList");
+    taskList.innerHTML = "";
+    tasks.forEach(task => {
+        if(task.task == tt2g || task.task.includes(tt2g)){
+            if(task.done == 0){
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
+                taskList.appendChild(listItem);
+            }
+            else{
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
+                listItem.style.textDecoration = "line-through";
+                taskList.appendChild(listItem);
+            }
+        }
+    });
+    tsktoget.value = "";
 }
 
 function sortprio(){
