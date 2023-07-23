@@ -3,24 +3,36 @@ body {
 }
 
 br{
-    height: 10px;
+    height: 6px;
 }
 
 #topline {
     display: flex;
     flex-direction: row;
-    padding-left: 270px;
+    padding-left: 250px;
 }
 #topline div{
     margin: 20px;
 }
+#topline div button{
+    border: 1px solid aquamarine;
+    background-color: aquamarine;
+    box-shadow: none;
+    height: 20px;
+    width: max-content;
+}
+#topline div button:hover{
+    color: aliceblue;
+}
 
 #functions{
     background-color: rgb(255, 241, 203);
-    width: 800px;
+    width: 880px;
     height: auto;
-    margin-left: 200px;
-    padding: 30px;
+    margin-left: 180px;
+    padding-left: 30px;
+    padding-bottom: 30px;
+    padding-top: 10px;
 
 }
 
@@ -29,9 +41,19 @@ br{
     align-self: center;
 }
 
-#functions div div p{
-    width: 150px;
+#functions div p{
     font-size: 15px;
+}
+
+#functions div button{
+    height: 30px;
+    margin-top: 5px;
+    border: 2px solid rgb(166, 0, 255);
+}
+
+#functions div button:hover{
+    color: aliceblue;
+    background-color: red;
 }
 
 #functions div{

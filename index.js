@@ -197,7 +197,7 @@ function searchtag(){
     const taskList = document.getElementById("taskList");
     taskList.innerHTML = "";
     tasks.forEach(task => {
-        if(task.task == tt2g || task.task.includes(tt2g)){
+        if(task.tag == tt2g || task.tag.includes(tt2g)){
             if(task.done == 0){
                 const listItem = document.createElement("li");
                 listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
@@ -220,7 +220,7 @@ function sortprio(){
 }
 
 function sortdate(){
-    tasks.sort((a,b) => a.date - b.date);
+    tasks.sort((a,b) => b.date - a.date);
     displayAllTasks();
 }
 
@@ -284,10 +284,12 @@ function displaypending(){
     });
 }
 
+
 document.querySelector("#addtop").addEventListener("click", function(){
     document.querySelector("#addanddisplay").style.display = "block";
     document.querySelector("#delete").style.display = "none";
-    document.querySelector("#editandmark").style.display = "none";
+    document.querySelector("#edita").style.display = "none";
+    document.querySelector("#markit").style.display = "none";
     document.querySelector("#filterby").style.display = "none";
     document.querySelector("#searchandfetch").style.display = "none";
     document.querySelector("#sortby").style.display = "none";
@@ -296,7 +298,8 @@ document.querySelector("#addtop").addEventListener("click", function(){
 document.querySelector("#deletetop").addEventListener("click", function(){
     document.querySelector("#addanddisplay").style.display = "none";
     document.querySelector("#delete").style.display = "block";
-    document.querySelector("#editandmark").style.display = "none";
+    document.querySelector("#edita").style.display = "none";
+    document.querySelector("#markit").style.display = "none";
     document.querySelector("#filterby").style.display = "none";
     document.querySelector("#searchandfetch").style.display = "none";
     document.querySelector("#sortby").style.display = "none";
@@ -305,15 +308,28 @@ document.querySelector("#deletetop").addEventListener("click", function(){
 document.querySelector("#edittop").addEventListener("click", function(){
     document.querySelector("#addanddisplay").style.display = "none";
     document.querySelector("#delete").style.display = "none";
-    document.querySelector("#editandmark").style.display = "block";
+    document.querySelector("#edita").style.display = "block";
+    document.querySelector("#markit").style.display = "none";
     document.querySelector("#filterby").style.display = "none";
     document.querySelector("#searchandfetch").style.display = "none";
     document.querySelector("#sortby").style.display = "none";
 });
+
+document.querySelector("#marktop").addEventListener("click", function(){
+    document.querySelector("#addanddisplay").style.display = "none";
+    document.querySelector("#delete").style.display = "none";
+    document.querySelector("#edita").style.display = "none";
+    document.querySelector("#markit").style.display = "block";
+    document.querySelector("#filterby").style.display = "none";
+    document.querySelector("#searchandfetch").style.display = "none";
+    document.querySelector("#sortby").style.display = "none";
+});
+
 document.querySelector("#filtertop").addEventListener("click", function(){
     document.querySelector("#addanddisplay").style.display = "none";
     document.querySelector("#delete").style.display = "none";
-    document.querySelector("#editandmark").style.display = "none";
+    document.querySelector("#edita").style.display = "none";
+    document.querySelector("#markit").style.display = "none";
     document.querySelector("#filterby").style.display = "block";
     document.querySelector("#searchandfetch").style.display = "none";
     document.querySelector("#sortby").style.display = "none";
@@ -321,7 +337,8 @@ document.querySelector("#filtertop").addEventListener("click", function(){
 document.querySelector("#searchtop").addEventListener("click", function(){
     document.querySelector("#addanddisplay").style.display = "none";
     document.querySelector("#delete").style.display = "none";
-    document.querySelector("#editandmark").style.display = "none";
+    document.querySelector("#edita").style.display = "none";
+    document.querySelector("#markit").style.display = "none";
     document.querySelector("#filterby").style.display = "none";
     document.querySelector("#searchandfetch").style.display = "block";
     document.querySelector("#sortby").style.display = "none";
@@ -329,7 +346,8 @@ document.querySelector("#searchtop").addEventListener("click", function(){
 document.querySelector("#sorttop").addEventListener("click", function(){
     document.querySelector("#addanddisplay").style.display = "none";
     document.querySelector("#delete").style.display = "none";
-    document.querySelector("#editandmark").style.display = "none";
+    document.querySelector("#edita").style.display = "none";
+    document.querySelector("#markit").style.display = "none";
     document.querySelector("#filterby").style.display = "none";
     document.querySelector("#searchandfetch").style.display = "none";
     document.querySelector("#sortby").style.display = "block";
