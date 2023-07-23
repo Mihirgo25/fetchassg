@@ -101,7 +101,7 @@ document.querySelector("#reset").addEventListener("click",function(){
 });
 
 function filterprio(){
-    const priotoget = document.querySelector("#filterprio");
+    const priotoget = document.querySelector("#filter");
     const p2g = priotoget.value.trim();
     const taskList = document.getElementById("taskList");
     taskList.innerHTML = "";
@@ -124,7 +124,7 @@ function filterprio(){
 }
 
 function filtercate(){
-    const catetoget = document.querySelector("#filtercate");
+    const catetoget = document.querySelector("#filter");
     const c2g = catetoget.value.trim();
     const taskList = document.getElementById("taskList");
     taskList.innerHTML = "";
@@ -144,6 +144,28 @@ function filtercate(){
         }
     });
     catetoget.value = "";
+}
+function filterdate(){
+    const datetoget = document.querySelector("#filterdt");
+    const d2g = datetoget.value;
+    const taskList = document.getElementById("taskList");
+    taskList.innerHTML = "";
+    tasks.forEach(task => {
+        if(task.date <= d2g){
+            if(task.done == 0){
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
+                taskList.appendChild(listItem);
+            }
+            else{
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
+                listItem.style.textDecoration = "line-through";
+                taskList.appendChild(listItem);
+            }
+        }
+    });
+    datetoget.value = "";
 }
 
 function searchtask(){
@@ -238,6 +260,9 @@ function displaypending(){
         if(task.date < dt.value){
             task.status = "missed";
         }
+        if(task.date > dt.value && task.done == 0){
+            task.status = "pending";
+        }
     });
     const taskList = document.getElementById("taskList");
     taskList.innerHTML = "";
@@ -255,12 +280,57 @@ function displaypending(){
                 listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}, Status: Missed`;
                 taskList.appendChild(listItem);
             }
-            else{
-                const listItem = document.createElement("li");
-                listItem.innerHTML = `Task: ${task.task}, Duedate: ${task.date}`;
-                taskList.appendChild(listItem);
-            }
         }
     });
-
 }
+
+document.querySelector("#addtop").addEventListener("click", function(){
+    document.querySelector("#addanddisplay").style.display = "block";
+    document.querySelector("#delete").style.display = "none";
+    document.querySelector("#editandmark").style.display = "none";
+    document.querySelector("#filterby").style.display = "none";
+    document.querySelector("#searchandfetch").style.display = "none";
+    document.querySelector("#sortby").style.display = "none";
+});
+
+document.querySelector("#deletetop").addEventListener("click", function(){
+    document.querySelector("#addanddisplay").style.display = "none";
+    document.querySelector("#delete").style.display = "block";
+    document.querySelector("#editandmark").style.display = "none";
+    document.querySelector("#filterby").style.display = "none";
+    document.querySelector("#searchandfetch").style.display = "none";
+    document.querySelector("#sortby").style.display = "none";
+});
+
+document.querySelector("#edittop").addEventListener("click", function(){
+    document.querySelector("#addanddisplay").style.display = "none";
+    document.querySelector("#delete").style.display = "none";
+    document.querySelector("#editandmark").style.display = "block";
+    document.querySelector("#filterby").style.display = "none";
+    document.querySelector("#searchandfetch").style.display = "none";
+    document.querySelector("#sortby").style.display = "none";
+});
+document.querySelector("#filtertop").addEventListener("click", function(){
+    document.querySelector("#addanddisplay").style.display = "none";
+    document.querySelector("#delete").style.display = "none";
+    document.querySelector("#editandmark").style.display = "none";
+    document.querySelector("#filterby").style.display = "block";
+    document.querySelector("#searchandfetch").style.display = "none";
+    document.querySelector("#sortby").style.display = "none";
+});
+document.querySelector("#searchtop").addEventListener("click", function(){
+    document.querySelector("#addanddisplay").style.display = "none";
+    document.querySelector("#delete").style.display = "none";
+    document.querySelector("#editandmark").style.display = "none";
+    document.querySelector("#filterby").style.display = "none";
+    document.querySelector("#searchandfetch").style.display = "block";
+    document.querySelector("#sortby").style.display = "none";
+});
+document.querySelector("#sorttop").addEventListener("click", function(){
+    document.querySelector("#addanddisplay").style.display = "none";
+    document.querySelector("#delete").style.display = "none";
+    document.querySelector("#editandmark").style.display = "none";
+    document.querySelector("#filterby").style.display = "none";
+    document.querySelector("#searchandfetch").style.display = "none";
+    document.querySelector("#sortby").style.display = "block";
+});

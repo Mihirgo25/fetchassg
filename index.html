@@ -1,74 +1,84 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Task Manager</title>
-  <link rel='stylesheet' type='text/css' href='des3.css'>
-</head>
-<body>
-  <h1 style = "text-align: center;">To Do List</h1>
-
-  <div id ="functions">
-    <div>
-      <p>Enter Task:</p>
-      <input type="text" id="taskInput" placeholder="Enter task">
-      <p>Enter Tag:</p>
-      <input type="text" id="tagInput" placeholder="Enter tag">
-      <p>Enter Category:</p>
-      <input type="text" id="categoryInput" placeholder="Enter Category">
-      <p>Select Due Date:</p>
-      <input type="date" id="duedate" placeholder="Enter Due Date">
-      <p>Assign Priority:</p>
-      <input type="text" id="priority" placeholder="Enter The priority"><br><br>
-      <button id = "addtask">Add Task</button><br>
-      <button id = "displaytask" onclick="displayAllTasks()">Display All Tasks</button>
-    </div>
-    <div>
-      <p>Enter Task To Delete:</p>
-      <input type="text" id = "idel" placeholder="Add id of the task to delete"><br><br>
-      <button id = "delsel">Delete Selected Item</button><br>
-      <button id = "deletealltasks" onclick="deleteAll()">Delete All</button><br><br><br><br>
-      <p>Enter Id of Task to Edit:</p>
-      <input type="text" id = "idedit" placeholder="Add id of the task to edit">
-      <p>Enter Content:</p>
-      <input type="text" id = "edit" placeholder="Enter the edited content"><br><br>
-      <button id = "editsel">Edit Selected Item</button><br>
-      <button id = "reset">Reset</button>
-    </div>
-    <div>
-      <p>Filter By Priority:</p>
-      <input type="text" id = "filterprio" placeholder = "Add Level in Integer"><br><br>
-      <button id = "fprio" onclick="filterprio()">Filter By Priority</button><br><br>
-      <p>Filter By Category:</p>
-      <input type="text" id = "filtercate" placeholder = "Add Category"><br><br>
-      <button id = "fcate" onclick="filtercate()">Filter By Category</button><br><br><br><br>
-      <p>Mark as Done/Undone:</p>
-      <input type="text" id = "idmark" placeholder="Add id of the task to mark"><br><br>
-      <button id = "mark">Mark as Done/Undone</button>
-    </div>
-    <div>
-      <p>Search By Task:</p>
-      <input type="text" id = "search" placeholder = "Add task to Search">
-      <button id = "srch" onclick="searchtask()">Search</button><br><br>
-      <p>Search By Tag:</p>
-      <input type="text" id = "searchtag" placeholder = "Add task to Search">
-      <button id = "srchtag" onclick="searchtag()">Search</button><br><br><br>
-      <p>Sort By Priority:</p>
-      <button id = "srtprio" onclick="sortprio()">Sort By Priority</button><br><br>
-      <p>Sort By Due Date:</p>
-      <button id = "srtdate" onclick="sortdate()">Sort By Date</button>
-    </div>
-    <div>
-      <p>See Pending and Missed Tasks</p>
-      <button id = "pending" onclick="displaypending()">Search</button><br>
-      <p>Fetch Tasks From Storage</p>
-      <button id = "fetch" onclick="fetch()">Fetch</button><br>
-      <p>Save Tasks To Local Storage</p>
-      <button id = "save" onclick="save()">Save</button>
-    </div>
-  </div>
-
-  <ul id="taskList"></ul>
-
-  <script src="index.js"></script>
-</body>
+  <head>
+    <title>Task Manager</title>
+    <link rel='stylesheet' type='text/css' href='des3.css'>
+  </head>
+  <body>
+    <h1 style = "text-align: center;">To Do List</h1>
+    <section id = "topline">
+      <div><button id = "addtop" >Add and Display</button></div>
+      <div><button id = "deletetop" >Delete</button></div>
+      <div><button id = "edittop" >Edit or Mark</button></div>
+      <div><button id = "filtertop" >Filter</button></div>
+      <div><button id = "searchtop" >Search and Retrieve</button></div>
+      <div><button id = "sorttop" >Sort By</button></div>
+    </section>
+    <section id = "functions">
+      <div id = "addanddisplay">
+        <p>Enter Task:</p>
+        <input type="text" id="taskInput" placeholder="Enter task">
+        <p>Enter Tag:</p>
+        <input type="text" id="tagInput" placeholder="Enter tag">
+        <p>Enter Category:</p>
+        <input type="text" id="categoryInput" placeholder="Enter Category">
+        <p>Select Due Date:</p>
+        <input type="date" id="duedate" placeholder="Enter Due Date">
+        <p>Assign Priority:</p>
+        <input type="text" id="priority" placeholder="Enter The priority"><br><br>
+        <button id = "addtask">Add Task</button><br>
+        <button id = "displaytask" onclick="displayAllTasks()">Display All Tasks</button>
+      </div>
+      <div id = "delete">
+        <p>Enter Task To Delete:</p>
+        <input type="text" id = "idel" placeholder="Add id of the task to delete"><br><br>
+        <button id = "delsel">Delete Selected Item</button><br>
+        <button id = "deletealltasks" onclick="deleteAll()">Delete All</button>
+      </div>
+      <div id = "editandmark">
+        <p>Enter Id of Task to Edit:</p>
+        <input type="text" id = "idedit" placeholder="Add id of the task to edit">
+        <p>Enter Content:</p>
+        <input type="text" id = "edit" placeholder="Enter the edited content"><br><br>
+        <button id = "editsel">Edit Selected Item</button><br>
+        <button id = "reset">Reset</button><br><br>
+        <p>Mark as Done/Undone:</p>
+        <input type="text" id = "idmark" placeholder="Add id of the task to mark"><br><br>
+        <button id = "mark">Mark as Done/Undone</button>
+      </div>
+      <div id = "filterby">
+        <p>Filter By Priority/Category:</p>
+        <input type="text" id = "filter" placeholder = "Add Level/Category"><br><br>
+        <button id = "fprio" onclick="filterprio()">Filter By Priority</button><br>
+        <button id = "fcate" onclick="filtercate()">Filter By Category</button><br><br>
+        <p>Filter By Date:</p>
+        <input type="date" id = "filterdt" placeholder = "Add Level in Integer"><br><br>
+        <button id = "fdate" onclick="filterdate()">Filter By Due Date</button>
+      </div>
+      <div id = "searchandfetch">
+        <p>Search By Task:</p>
+        <input type="text" id = "search" placeholder = "Add task to Search">
+        <button id = "srch" onclick="searchtask()">Search</button><br><br>
+        <p>Search By Tag:</p>
+        <input type="text" id = "searchtag" placeholder = "Add task to Search">
+        <button id = "srchtag" onclick="searchtag()">Search</button><br><br>
+        <p>See Pending and Missed Tasks</p>
+        <button id = "pending" onclick="displaypending()">Search</button><br>
+        <p>Fetch Tasks From Storage</p>
+        <button id = "fetch" onclick="fetch()">Fetch</button><br>
+        <p>Save Tasks To Local Storage</p>
+        <button id = "save" onclick="save()">Save</button>
+      </div>
+      <div id = "sortby">
+        <p>Sort By Priority:</p>
+        <button id = "srtprio" onclick="sortprio()">Sort By Priority</button><br><br>
+        <p>Sort By Due Date:</p>
+        <button id = "srtdate" onclick="sortdate()">Sort By Date</button>
+      </div>
+    </section>
+    <section id = "list">
+      <ul id="taskList"></ul>
+    </section>
+    <script src="index.js"></script>
+  </body>
 </html>
